@@ -76,6 +76,7 @@ public class Gasolinera {
             default -> {
             }
         }
+          
           notifyAll();
     }
 
@@ -128,6 +129,70 @@ public class Gasolinera {
             }
             case 4 -> {
                 canvas.eliminarCamionsurtidor(id);
+                //borrar canvas
+                s4=1;
+            }
+            default -> {
+            }
+        }
+          notifyAll();
+    }
+    
+    
+       public synchronized int entraAmbulancia(int id) throws InterruptedException {
+        int surtidor = 0;
+        canvas.pintarAmbulanciaCola(id,0);//pintar canvas en cola
+        while (s1 == 0 && s2 == 0 && s3 == 0 && s4 == 0) {
+            
+            wait();
+        }
+        canvas.eliminarAmbulanciaCola(id, 2);
+        if (s2 == 1) {
+            //pintar canvas 
+            canvas.pintarAmbulanciaSurtidor(id, 2 , 2);
+            s2 = 0;
+            surtidor=2;
+        }else
+        if (s3 == 1) {
+            canvas.pintarAmbulanciaSurtidor(id, 2 , 3);
+            //pintar canvas 
+            s3 = 0;
+            surtidor=3;
+        }else
+        if (s1 == 1) {
+            canvas.pintarAmbulanciaSurtidor(id, 2 , 1);
+            //pintar canvas 
+            s1 = 0;
+            surtidor=1;
+        }else
+        if (s4 == 1) {
+            canvas.pintarAmbulanciaSurtidor(id, 2 , 4);
+            //pintar canvas 
+            s4 = 0;
+            surtidor=4;
+        }
+        return surtidor;
+    }
+
+    public synchronized void saleAmbulancia(int id,int surtidor) {
+        switch (surtidor) {
+            case 1 -> {
+                canvas.eliminarAmbulanciaSurtidor(id);
+                //borrar canvas
+                s1=1;
+            }
+            case 2 -> {
+                canvas.eliminarAmbulanciaSurtidor(id);
+                //borrar canvas
+                s2=1;
+            }
+            case 3 -> {
+                canvas.eliminarAmbulanciaSurtidor(id);
+                //borrar canvas
+                s3=1;
+            }
+            case 4 -> {
+                canvas.eliminarAmbulanciaSurtidor(id);
                 //borrar canvas
                 s4=1;
             }

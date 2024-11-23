@@ -13,13 +13,14 @@ import java.util.Random;
  */
 public class Ambulancia extends Thread{
     private 
-        int id;
+        int id,tipo;
         Gasolinera g;
-        int tipo=1;
+        
         
     public Ambulancia(Gasolinera g,int id){
         this.id=id;
         this.g=g;
+        this.tipo=2;
     }
     @Override
     public void run(){
@@ -28,11 +29,11 @@ public class Ambulancia extends Thread{
         aleatorio.setSeed(System.currentTimeMillis());
         int surtidor;
         try {
-            surtidor=g.entraCoche(id);
-            System.out.println("El coche  " + id + "Ha entrado en el surtidor: " + surtidor );
+            surtidor=g.entraAmbulancia(id);
+            System.out.println("La Ambulancia  " + id + "Ha entrado en el surtidor: " + surtidor );
             sleep(aleatorio.nextInt(2*1000,4*1000));//tiempo de reportar
-            g.saleCoche(id,surtidor);
-            System.out.println("El coche  " + id + "Ha salido" );
+            g.saleAmbulancia(id,surtidor);
+            System.out.println("La Ambulancia  " + id + "Ha salido" );
         } catch (InterruptedException ex) {
            
         }

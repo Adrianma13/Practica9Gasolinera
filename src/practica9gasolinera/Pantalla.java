@@ -90,7 +90,7 @@ public class Pantalla extends javax.swing.JFrame {
         Thread[] vehiculos = new Thread[30];
         int aleatori;
         for (int i = 1; i < 30; i++) {
-            aleatori=aleatorio.nextInt(2);
+            aleatori=aleatorio.nextInt(3);
             if (aleatori == 0) {
 
                 vehiculos[i] = new Coche(g, i);

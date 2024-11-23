@@ -33,7 +33,7 @@ class Vehiculos {
 
 public class CanvasGasolinera extends Canvas {
 
-    private Image coche, camion, repostar,escaner;
+    private Image coche, camion, repostar, ambulancia;
     private ArrayList<Vehiculos> cola = new ArrayList();
     private ArrayList<Vehiculos> surtidores = new ArrayList();
 
@@ -46,15 +46,17 @@ public class CanvasGasolinera extends Canvas {
 
         coche = Toolkit.getDefaultToolkit().getImage(getClass().getResource("imagenes/coche.png"));
         camion = Toolkit.getDefaultToolkit().getImage(getClass().getResource("imagenes/camion.png"));
+        ambulancia = Toolkit.getDefaultToolkit().getImage(getClass().getResource("imagenes/ambulancia.png"));
         repostar = Toolkit.getDefaultToolkit().getImage(getClass().getResource("imagenes/repostar.png"));
         MediaTracker dibu = new MediaTracker(this);
         dibu.addImage(coche, 0);
         dibu.waitForID(0);
         dibu.addImage(camion, 1);
-        dibu.waitForID(0);
+        dibu.waitForID(1);
         dibu.addImage(repostar, 2);
-        dibu.waitForID(0);
-
+        dibu.waitForID(2);
+        dibu.addImage(ambulancia, 3);
+        dibu.waitForID(3);
     }
 
     @Override
@@ -69,7 +71,6 @@ public class CanvasGasolinera extends Canvas {
         og.drawImage(repostar, 200, 150, 100, 100, this);// creamos imagen 
         og.drawImage(repostar, 200, 300, 100, 100, this);// creamos imagen 
         og.drawImage(repostar, 700, 150, 100, 100, this);// creamos imagen 
-        og.drawImage(escaner, 300, 400, 400, 400, this);
         og.drawImage(repostar, 700, 300, 100, 100, this);// creamos imagen 
         Font f1 = new Font("Arial", Font.TYPE1_FONT, 30);
         og.setFont(f1);
@@ -85,42 +86,47 @@ public class CanvasGasolinera extends Canvas {
             if (cola.get(i).tipo == 1) {
                 og.drawImage(camion, 100 * i + 30, 600, 70, 70, this);
             }
+            if (cola.get(i).tipo == 2) {
+                og.drawImage(ambulancia, 100 * i + 30, 600, 70, 70, this);
+            }
         }
 
         for (int j = 0; j < surtidores.size(); j++) {
-            if (surtidores.get(j).surtidor == 1 && surtidores.get(j).tipo == 0){ 
+            if (surtidores.get(j).surtidor == 1 && surtidores.get(j).tipo == 0) {
                 og.drawImage(coche, 70, 160, 70, 70, this);
-                og.drawString("" + surtidores.get(j).id,30 , 220);
-            }
-            
-            if (surtidores.get(j).surtidor == 1 && surtidores.get(j).tipo == 1) {
-             
+                og.drawString("" + surtidores.get(j).id, 30, 220);
+            } else if (surtidores.get(j).surtidor == 1 && surtidores.get(j).tipo == 1) {
                 og.drawImage(camion, 70, 160, 70, 70, this);
-                og.drawString("" + surtidores.get(j).id,30 , 220);
+                og.drawString("" + surtidores.get(j).id, 30, 220);
+            } else if (surtidores.get(j).surtidor == 1 && surtidores.get(j).tipo == 2) {
+                og.drawImage(ambulancia, 70, 160, 70, 70, this);
+                og.drawString("" + surtidores.get(j).id, 30, 220);
+            } else if (surtidores.get(j).surtidor == 2 && surtidores.get(j).tipo == 0) {
+                og.drawImage(coche, 330, 320, 70, 70, this);
+                og.drawString("" + surtidores.get(j).id, 420, 380);
+            } else if (surtidores.get(j).surtidor == 2 && surtidores.get(j).tipo == 1) {
+                og.drawImage(camion, 330, 320, 70, 70, this);
+                og.drawString("" + surtidores.get(j).id, 420, 380);
+            } else if (surtidores.get(j).surtidor == 2 && surtidores.get(j).tipo == 2) {
+                og.drawImage(ambulancia, 330, 320, 70, 70, this);
+                og.drawString("" + surtidores.get(j).id, 420, 380);
+            } else if (surtidores.get(j).surtidor == 3 && surtidores.get(j).tipo == 0) {
+                og.drawImage(coche, 600, 160, 70, 70, this);
+                og.drawString("" + surtidores.get(j).id, 560, 220);
+            } else if (surtidores.get(j).surtidor == 3 && surtidores.get(j).tipo == 2) {
+                og.drawImage(ambulancia, 600, 160, 70, 70, this);
+                og.drawString("" + surtidores.get(j).id, 560, 220);
+            } else if (surtidores.get(j).surtidor == 4 && surtidores.get(j).tipo == 0) {
+                og.drawImage(coche, 820, 320, 70, 70, this);
+                og.drawString("" + surtidores.get(j).id, 900, 370);
+            } else if (surtidores.get(j).surtidor == 4 && surtidores.get(j).tipo == 1) {
+                og.drawImage(camion, 820, 320, 70, 70, this);
+                og.drawString("" + surtidores.get(j).id, 900, 370);
+            } if (surtidores.get(j).surtidor == 4 && surtidores.get(j).tipo == 2) {
+                og.drawImage(ambulancia, 820, 320, 70, 70, this);
+                og.drawString("" + surtidores.get(j).id, 900, 370);
             }
-            if (surtidores.get(j).surtidor == 2 && surtidores.get(j).tipo == 0){ 
-                    og.drawImage(coche, 330, 320, 70, 70, this);
-                    og.drawString("" + surtidores.get(j).id, 420 , 380);
-            }
-                
-            if (surtidores.get(j).surtidor == 2 && surtidores.get(j).tipo == 1) {
-                    og.drawImage(camion, 330, 320, 70, 70, this);
-                    og.drawString("" + surtidores.get(j).id, 420 , 380);
-            }
-            if (surtidores.get(j).surtidor == 3 && surtidores.get(j).tipo == 0) {
-                    og.drawImage(coche, 600, 160, 70, 70, this);
-                    og.drawString("" + surtidores.get(j).id,  560 , 220);
-            }
-                
-            if (surtidores.get(j).surtidor == 4 && surtidores.get(j).tipo == 0) {
-                    og.drawImage(coche, 820, 320, 70, 70, this);
-                    og.drawString("" + surtidores.get(j).id, 900 , 370);
-            }
-                
-            if (surtidores.get(j).surtidor == 4 && surtidores.get(j).tipo == 1) {
-                    og.drawImage(camion, 820, 320, 70, 70, this);
-                    og.drawString("" + surtidores.get(j).id, 900 , 370);
-            }
+           
 
         }
         g.drawImage(img, 0, 0, this);// pintamos la imagen en el canvas
@@ -173,6 +179,27 @@ public class CanvasGasolinera extends Canvas {
         repaint();
     }
 
+    public void pintarAmbulanciaCola(int id, int tipo) {
+        cola.add(new Vehiculos(id, tipo, 0));
+        repaint();
+    }
+
+    public void eliminarAmbulanciaCola(int id, int tipo) {
+        int i = 0;
+        boolean encontrado = false;
+
+        while (!encontrado) {
+            if (cola.get(i).id == id) {
+                encontrado = true;
+            } else {
+                i++;
+            }
+        }
+        cola.remove(i);
+
+        repaint();
+    }
+
     public void pintarCocheSurtidor(int id, int tipo, int surtidor) {
         surtidores.add(new Vehiculos(id, tipo, surtidor));
         repaint();
@@ -201,6 +228,27 @@ public class CanvasGasolinera extends Canvas {
     }
 
     public void eliminarCamionsurtidor(int id) {
+        int i = 0;
+        boolean encontrado = false;
+
+        while (!encontrado) {
+            if (surtidores.get(i).id == id) {
+                encontrado = true;
+            } else {
+                i++;
+            }
+        }
+        surtidores.remove(i);
+
+        repaint();
+    }
+
+    public void pintarAmbulanciaSurtidor(int id, int tipo, int surtidor) {
+        surtidores.add(new Vehiculos(id, tipo, surtidor));
+        repaint();
+    }
+
+    public void eliminarAmbulanciaSurtidor(int id) {
         int i = 0;
         boolean encontrado = false;
 
